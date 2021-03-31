@@ -15,7 +15,7 @@ const LoginScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Image
-                source={require('../assets/logo/rn-social-logo.png')} // 로그인 상단 중앙에 로고를 넣어줌
+                source={require('../assets/logo/healvis_logo.png')} // 로그인 상단 중앙에 로고를 넣어줌
                 style={styles.logo}
             />
             <Text style={styles.text}>Healvis</Text>

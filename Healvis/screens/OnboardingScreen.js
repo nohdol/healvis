@@ -1,23 +1,25 @@
 // 처음 앱을 켰을 때 슬라이드 해서 넘기는 애니메이션 App.js를 가보면 처음 들어온 사람만 보게 됨.
 import React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Onboarding from 'react-native-onboarding-swiper'; // 해당 모듈 구글에 검색하면 방법 나옴.
 
 const Skip = ({...props}) => (
-    <Button 
-        title='Skip'
-        color="#000000"
-        {...props} // 버튼을 누르면 빠르게 이동 시킴
-    />
+    <TouchableOpacity
+        style={{marginHorizontal:10}}
+        {...props}
+    >
+        <Text style={{fontSize:16}}>Skip</Text>
+    </TouchableOpacity>
 );
 
 const Next = ({...props}) => (
-    <Button 
-        title='Next'
-        color="#000000"
-        {...props } 
-    />
+    <TouchableOpacity
+        style={{marginHorizontal:10}}
+        {...props}
+    >
+        <Text style={{fontSize:16}}>Next</Text>
+    </TouchableOpacity>
 );
 
 const Done = ({...props}) => ( // TouchableOpacity를 이용해서 꾸밀 수도 있음
@@ -37,8 +39,8 @@ const Dots = ({selected}) => { // 직접 꾸밀 수도 있음
     return (
         <View
             style={{
-                width:5,
-                height:5,
+                width:6,
+                height:6,
                 marginHorizontal:3,
                 backgroundColor
             }}

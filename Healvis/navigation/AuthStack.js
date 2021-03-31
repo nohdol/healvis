@@ -1,16 +1,21 @@
 // AuthStack.js는 Routes.js에 사용될 것, Routes에 있는 것은 index.js에 사용됨
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import OnboardingScreen from './screens/OnboardingScreen';
-import LoginScreen from './screens/LoginScreen';
+import OnboardingScreen from '../screens/OnboardingScreen';
+import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+
+import FontAwesome from 'react-native-vector-icons/FontAwesome'; // 아이콘 제대로 안나옴
+// 확장명이 ttf 파일의 경우
+// node_modules에 react-native-vactor-icons에 있는 fonts파일들을 복사 android/app/src/main/assets/fonts 에 붙여넣기
+// 그 다음 cd android && ./gradlew clean 후 react-native run-android
 
 import AsyncStorage from '@react-native-community/async-storage'; // storage를 사용하여 처음 들어온 사람만 온보드
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null); // 처음 들어온 사람만 온보드
   let routeName;
 
@@ -45,7 +50,30 @@ const App = () => {
             component={LoginScreen}
             options={{header: () => null}}
         />
-        <Stack.Screen name="Signup" component={SignupScreen} />
+        {/* signup screen 왼쪽 상단 Login back */}
+        <Stack.Screen 
+            name="Signup" 
+            component={SignupScreen}
+            options={({navigation}) => ({
+                title: '',
+                headerStyle: {
+                    backgroundColor: '#f9fafd',
+                    shadowColor: '#f9fafd',
+                    elevation: 0,
+                },
+                headerLeft: () => (
+                    <View style={{marginLeft: 10}}>
+                        <FontAwesome.Button
+                            name="long-arrow-left"
+                            size={25}
+                            backgroundColor="#f9fafd"
+                            color="#333"
+                            onPress={() => navigation.navigate('Login')}
+                        />
+                    </View>
+                ),
+            })} 
+        />
     </Stack.Navigator>
   );
 };

@@ -1,69 +1,59 @@
 // 소셜 사이트로 로그인 하는 것 (추후에 카카오, 구글 넣어줄 것), 여기에는 페북과 구글 있음
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import {windowHeight, windowWidth} from '../utils/Dimentions';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
-    return (
-        <View style={styles.inputContainer}>
-            <View style={styles.iconStyle}>
-                <AntDesign name={iconType} size={25} color="#666" />
-            </View>
-            <TextInput 
-                value={labelValue}
-                style={styles.input}
-                numberOfLines={1}
-                placeholder={placeholderText}
-                placeholderTextColor="#666"
-                {...rest}
-            />
-        </View>
-    );
+const SocialButton = ({
+  buttonTitle,
+  btnType,
+  color,
+  backgroundColor,
+  ...rest
+}) => {
+  let bgColor = backgroundColor;
+  return (
+    <TouchableOpacity
+      style={[styles.buttonContainer, {backgroundColor: bgColor}]}
+      {...rest}>
+      <View style={styles.iconWrapper}>
+        <FontAwesome name={btnType} style={styles.icon} size={22} color={color} />
+      </View>
+      <View style={styles.btnTxtWrapper}>
+        <Text style={[styles.buttonText, {color: color}]}>{buttonTitle}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 };
 
-export default FormInput;
+export default SocialButton;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        marginTop: 5,
-        marginBottom: 10,
-        width: '100%',
-        height: windowHeight / 15,
-        borderColor: '#ccc',
-        borderRadius: 3,
-        borderWidth: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#fff'
-      },
-      iconStyle: {
-        padding: 10,
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRightColor: '#ccc',
-        borderRightWidth: 1,
-        width: 50,
-      },
-      input: {
-        padding: 10,
-        flex: 1,
-        fontSize: 16,
-        fontFamily:'Lato-Regular',
-        color: '#333',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      inputField: {
-        padding: 10,
-        marginTop: 5,
-        marginBottom: 10,
-        width: windowWidth / 1.5,
-        height: windowHeight / 15,
-        fontSize: 16,
-        borderRadius: 8,
-        borderWidth: 1
-      }
+  buttonContainer: {
+    marginTop: 10,
+    width: '100%',
+    height: windowHeight / 15,
+    padding: 10,
+    flexDirection: 'row',
+    borderRadius: 3,
+  },
+  iconWrapper: {
+    width: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    fontWeight: 'bold',
+  },
+  btnTxtWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: 'Lato-Regular',
+  },
 });

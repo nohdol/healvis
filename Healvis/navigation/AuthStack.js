@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'; // 아이콘 �
 // 그 다음 cd android && ./gradlew clean 후 react-native run-android
 
 import AsyncStorage from '@react-native-community/async-storage'; // storage를 사용하여 처음 들어온 사람만 온보드
+import { GoogleSignin } from '@react-native-community/google-signin';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,9 @@ const AuthStack = () => {
       } else {
         setIsFirstLaunch(false);
       }
+    });
+    GoogleSignin.configure({
+      webClientId: '165066213514-1msrb67not74v6c1rsmauqlb58uheokb.apps.googleusercontent.com', // google-services.json에서 "client_type": 3 인 부분 위에 "client_id" 뒷 부분임.
     })
   }, []);
 

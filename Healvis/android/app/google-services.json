@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "165066213514",
+    "project_id": "firestorage-65897",
+    "storage_bucket": "firestorage-65897.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165066213514:android:7acc4693f04489610dc573",
+        "android_client_info": {
+          "package_name": "com.healvis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165066213514-1msrb67not74v6c1rsmauqlb58uheokb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0zX8Fs-_V-XERfzcPlS41Y42ZNrmQ-gQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165066213514-1msrb67not74v6c1rsmauqlb58uheokb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

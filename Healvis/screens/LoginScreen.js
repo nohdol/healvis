@@ -1,13 +1,17 @@
 // components에서 먼저 형식을 만들고 가져와서 사용함
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'; // Image는 로그인 창 위에 로고위함
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+
+    const {login} = useContext(AuthContext);
+
     return (
         <View style={styles.container}>
             <Image
@@ -34,9 +38,9 @@ const LoginScreen = ({navigation}) => {
                 secureTextEntry={true} // 비밀번호 입력이 *로 나옴
             />
 
-            <FormButton // 가입 버튼 만듦
+            <FormButton // 로그인 버튼 만듦
                 buttonTitle="Sign In"
-                onPress={() => alert('Sign In Clicked!')} // 누르면 알림창이 뜸
+                onPress={() => login(email, password)} // Auth에서 user 정보를 가져오기 때문에 user 아닌 경우 로그인 x
             />
 
             <TouchableOpacity style={styles.forgotButton} onPress={() => {}}> 

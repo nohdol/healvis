@@ -1,14 +1,17 @@
 // LoginScreen과 유사해서 그대로 가져오고 수정함
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'; // Image는 로그인 창 위에 로고위함
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const SignupScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [confirmpassword, setConfirmPassword] = useState();
+
+    const {register} = useContext(AuthContext); // AuthProvider 내부 AuthContext의 register를 가져옴.
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Create an account</Text>
@@ -33,15 +36,17 @@ const SignupScreen = ({navigation}) => {
 
             <FormInput
                 labelValue={confirmpassword} // password 확인
-                onChangeText={(userPassword) => setPassword(userPassword)}
+                onChangeText={(userPassword) => setConfirmPassword(userPassword)}
                 placeholderText="Confirm Password"
                 iconType="lock" // 자물쇠 모양
                 secureTextEntry={true} // 비밀번호 입력이 *로 나옴
             />
 
+            {/* 여기에 설문조사 내용 추가 */}
+
             <FormButton
-                buttonTitle="Sign Up"
-                onPress={() => alert('Sign Up Clicked!')} // 누르면 알림창이 뜸
+                buttonTitle="Sign Up" // 누르면 Firebase Authentication에 User로 등록되게 됨.
+                onPress={() => register(email, password)} // 설문조사 내용도 넘어가게 함
             />
 
             {/* 회원가입 규약 관련 (주석 처리 할 것) */}

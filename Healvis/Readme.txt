@@ -5,7 +5,7 @@ sdk.dir = C:\\Users\\<user name>\\AppData\\Local\\Android\\sdk
 Firebase Authentication in RN
 firebase 만들 때 "react native init <앱 이름>"에서 패키지 이름에 com.<앱 이름> 해야함.
 
-* Google Login in RN with Firebase
+Google Login in RN with Firebase
 https://www.pradipdebnath.com/2020/10/06/how-to-implement-google-login-in-react-native-with-firebase/
 
 1. firebase 프로젝트 설정에 가서 '디지털 지문 추가' 선택
@@ -16,3 +16,6 @@ keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -storepass an
 cd android
 ./gradlew clean
 해줘야 함.
+
+* 홈화면, 프로필 화면 구성, 여기 이전 commit에서 게시물 홈 만들 수 있음
+Social App with Firebase in React Native 6번째 영상 따라하면 됨.

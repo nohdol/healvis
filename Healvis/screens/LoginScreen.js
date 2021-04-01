@@ -18,7 +18,6 @@ const LoginScreen = ({navigation}) => {
                 source={require('../assets/logo/healvis_logo.png')} // 로그인 상단 중앙에 로고를 넣어줌
                 style={styles.logo}
             />
-            <Text style={styles.text}>Healvis</Text>
             
             <FormInput // contents에서 작성한 것들 login 창에 넣어줌. 안에 있는 rest로 이어지는 것임.
                 labelValue={email} // Email 작성하기
@@ -40,7 +39,7 @@ const LoginScreen = ({navigation}) => {
 
             <FormButton // 로그인 버튼 만듦
                 buttonTitle="Sign In"
-                onPress={() => login(email, password)} // Auth에서 user 정보를 가져오기 때문에 user 아닌 경우 로그인 x
+                onPress={() => login(email, password)} // Auth에서 user 정보를 가져오기 때문에 user 아닌 경우 로그인 x, email, password 정보를 AuthProvider로 제공, 거기서 비교를 함.
             />
 
             <TouchableOpacity style={styles.forgotButton} onPress={() => {}}> 
@@ -90,8 +89,8 @@ const styles = StyleSheet.create({
       padding: 20,
     },
     logo: {
-      height: 150,
-      width: 150,
+      height: 240,
+      width: 240,
       resizeMode: 'cover',
     },
     text: {

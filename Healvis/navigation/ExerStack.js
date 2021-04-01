@@ -2,21 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import {View} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import OnboardingScreen from '../screens/OnboardingScreen';
-import LoginScreen from '../screens/LoginScreen';
-import SignupScreen from '../screens/SignupScreen';
+import ExerciseScreen from '../screens/ExerciseScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; // 아이콘 제대로 안나옴
-// 확장명이 ttf 파일의 경우
-// node_modules에 react-native-vactor-icons에 있는 fonts파일들을 복사 android/app/src/main/assets/fonts 에 붙여넣기
-// 그 다음 cd android && ./gradlew clean 후 react-native run-android
-
-import AsyncStorage from '@react-native-community/async-storage'; // storage를 사용하여 처음 들어온 사람만 온보드
-import { GoogleSignin } from '@react-native-community/google-signin';
 
 const Stack = createStackNavigator();
 
-const AuthStack = () => {
+const ExerStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null); // 처음 들어온 사람만 온보드
   let routeName;
 
@@ -43,21 +36,16 @@ const AuthStack = () => {
   }
 
   return ( // 이동하는 장소를 나타내줌. 처음 접속이면 Onboarding, 아니면 Login
-    <Stack.Navigator initialRouteName={routeName}> 
+    <Stack.Navigator initialRouteName={"Home"}> 
         <Stack.Screen
-            name="Onboarding"
-            component={OnboardingScreen}
+            name="Home"
+            component={HomeScreen}
             options={{header: () => null}}
         />
-        <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{header: () => null}}
-        />
-        {/* signup screen 왼쪽 상단 Login back */}
+        {/* ExerciseScreen 왼쪽 상단 운동 선택 back */}
         <Stack.Screen 
-            name="Signup" 
-            component={SignupScreen}
+            name="Exercise" 
+            component={ExerciseScreen}
             options={({navigation}) => ({
                 title: '',
                 headerStyle: {
@@ -68,11 +56,11 @@ const AuthStack = () => {
                 headerLeft: () => ( // Signup 왼쪽 상단에 화살표 만듦
                     <View style={{marginLeft: 10}}>
                         <FontAwesome.Button
-                            name="chevron-left"
+                            name="long-arrow-left"
                             size={25}
                             backgroundColor="#f9fafd"
                             color="#333"
-                            onPress={() => navigation.navigate('Login')}
+                            onPress={() => navigation.navigate('Home')}
                         />
                     </View>
                 ),
@@ -82,4 +70,4 @@ const AuthStack = () => {
   );
 };
   
-export default AuthStack;
+export default ExerStack;

@@ -1,3 +1,4 @@
+// LoginScreen, SignupScreen에 사용됨
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {windowHeight, windowWidth} from '../utils/Dimentions';

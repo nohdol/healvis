@@ -10,6 +10,7 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Daily Report</Text>
       <Text style={styles.text}>Monthly Report</Text>
+      {/* 로그아웃을 누르면 AuthProvider에 있는 AuthContext에 Auth를 잃게 되므로 Routes에서 AuthStack으로 이동하게 됨. */}
       <FormButton buttonTitle="Logout" onPress={() => logout()} />
     </View>
   );

@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
 import {Container} from '../styles/FeedStyles';
 import FormButton from '../components/FormButton';
 import { ExerContext } from '../navigation/ExerProvider';
-import {ExerciseChoice} from './HomeScreen';
+import {ExerciseChoice} from './ExerciseScreen';
 
 const StartScreen = ({navigation}) => {
     // const {start, stop} = useContext(ExerContext);

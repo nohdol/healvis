@@ -5,6 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import UserLoginScreen from '../screens/UserLoginScreen';
+import TrainerLoginScreen from '../screens/TrainerLoginScreen';
+import {Trainer} from '../screens/LoginScreen';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; // 아이콘 제대로 안나옴
 // 확장명이 ttf 파일의 경우
@@ -14,11 +17,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'; // 아이콘 �
 import AsyncStorage from '@react-native-community/async-storage'; // storage를 사용하여 처음 들어온 사람만 온보드
 import { GoogleSignin } from '@react-native-community/google-signin';
 
+
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null); // 처음 들어온 사람만 온보드
   let routeName;
+  let istrainer = useState(false);
 
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then(value => { 
@@ -53,6 +58,52 @@ const AuthStack = () => {
             name="Login"
             component={LoginScreen}
             options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="UserLogin"
+          component={UserLoginScreen}
+          options={({navigation}) => ({
+            title: '',
+            headerStyle: {
+                backgroundColor: '#f9fafd',
+                shadowColor: '#f9fafd',
+                elevation: 0,
+            },
+            headerLeft: () => (
+                <View style={{marginLeft: 10}}>
+                    <FontAwesome.Button
+                        name="chevron-left"
+                        size={25}
+                        backgroundColor="#f9fafd"
+                        color="darkblue"
+                        onPress={() => navigation.navigate('Login')}
+                    />
+                </View>
+            ),
+        })}
+        />
+        <Stack.Screen
+          name="TrainerLogin"
+          component={TrainerLoginScreen}
+          options={({navigation}) => ({
+            title: '',
+            headerStyle: {
+                backgroundColor: '#f9fafd',
+                shadowColor: '#f9fafd',
+                elevation: 0,
+            },
+            headerLeft: () => (
+                <View style={{marginLeft: 10}}>
+                    <FontAwesome.Button
+                        name="chevron-left"
+                        size={25}
+                        backgroundColor="#f9fafd"
+                        color="darkblue"
+                        onPress={() => navigation.navigate('Login')}
+                    />
+                </View>
+            ),
+        })}
         />
         {/* signup screen 왼쪽 상단 Login back */}
         <Stack.Screen 

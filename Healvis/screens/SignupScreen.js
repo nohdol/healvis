@@ -5,6 +5,7 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
+import {Trainer} from './LoginScreen';
 
 const SignupScreen = ({navigation}) => {
     const [email, setEmail] = useState();
@@ -12,6 +13,11 @@ const SignupScreen = ({navigation}) => {
     const [confirmpassword, setConfirmPassword] = useState();
 
     const {register} = useContext(AuthContext); // AuthProvider 내부 AuthContext의 register를 가져옴.
+
+    let istrainer = useState(false);
+    if (Trainer != null){
+        istrainer = Trainer;
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Create an account</Text>
@@ -84,7 +90,7 @@ const SignupScreen = ({navigation}) => {
 
             <TouchableOpacity
                 style={styles.navButton}
-                onPress={() => navigation.navigate('Login')}>
+                onPress={() => {istrainer ? navigation.navigate('TrainerLogin') : navigation.navigate('UserLogin')}}>
                 <Text style={styles.navButtonText}>Have an account? Sign In</Text>
             </TouchableOpacity>
         </View>

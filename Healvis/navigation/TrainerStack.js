@@ -68,7 +68,7 @@ const ExerStack = ({navigation}) => ( // post 버튼
   </Stack.Navigator>
 );
 
-const AppStack = () => {
+const TrainerStack = () => {
     const {user} = useContext(AuthContext);
     console.log(user.email) // 여기서 라즈베리 파이에 계정 보내줌. user.email에 계정이 저장되어 있음.
     return (
@@ -76,7 +76,7 @@ const AppStack = () => {
         tabBarOptions={{
           activeTintColor: '#2e64e5',
         }}>
-        <Tab.Screen
+        {/* <Tab.Screen
           name="House"
           component={HomeStack} // ShopScreen 만들어야 함
           options={{
@@ -89,7 +89,7 @@ const AppStack = () => {
               />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Exercise"
           component={ExerStack}
@@ -120,4 +120,4 @@ const AppStack = () => {
 
     
 
-export default AppStack;
+export default TrainerStack;

@@ -13,9 +13,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { AuthContext } from '../navigation/AuthProvider';
 import HomeScreen from '../screens/HomeScreen';
 import ExerciseScreen from '../screens/ExerciseScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import StartScreen from '../screens/StartScreen';
 import StopScreen from '../screens/StopScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import DailyScreen from '../screens/DailyScreen';
+import MonthlyScreen from '../screens/MonthlyScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,6 +70,62 @@ const ExerStack = ({navigation}) => ( // post 버튼
   </Stack.Navigator>
 );
 
+const ProfileStack = ({navigation}) => ( // post 버튼
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{header: () => null}}
+    />
+  <Stack.Screen
+      name="DailyReport"
+      component={DailyScreen}
+      options={({navigation}) => ({
+        title: '',
+        headerStyle: {
+            backgroundColor: '#f9fafd',
+            shadowColor: '#f9fafd',
+            elevation: 0,
+        },
+        headerLeft: () => (
+            <View style={{marginLeft: 10}}>
+                <FontAwesome.Button
+                    name="chevron-left"
+                    size={25}
+                    backgroundColor="#f9fafd"
+                    color="darkblue"
+                    onPress={() => navigation.navigate('Profile')}
+                />
+            </View>
+        ),
+    })}
+    />
+    <Stack.Screen
+      name="MonthlyReport"
+      component={MonthlyScreen}
+      options={({navigation}) => ({
+        title: '',
+        headerStyle: {
+            backgroundColor: '#f9fafd',
+            shadowColor: '#f9fafd',
+            elevation: 0,
+        },
+        headerLeft: () => (
+            <View style={{marginLeft: 10}}>
+                <FontAwesome.Button
+                    name="chevron-left"
+                    size={25}
+                    backgroundColor="#f9fafd"
+                    color="darkblue"
+                    onPress={() => navigation.navigate('Profile')}
+                />
+            </View>
+        ),
+    })}
+    />
+  </Stack.Navigator>
+);
+
 const AppStack = () => {
     const {user} = useContext(AuthContext);
     console.log(user.email) // 여기서 라즈베리 파이에 계정 보내줌. user.email에 계정이 저장되어 있음.
@@ -78,7 +136,7 @@ const AppStack = () => {
         }}>
         <Tab.Screen
           name="House"
-          component={HomeStack} // ShopScreen 만들어야 함
+          component={HomeStack}
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({color, size}) => (
@@ -106,7 +164,7 @@ const AppStack = () => {
         />
         <Tab.Screen
           name="Profile"
-          component={ProfileScreen}
+          component={ProfileStack}
           options={{
             // tabBarLabel: 'Home',
             tabBarIcon: ({color, size}) => (

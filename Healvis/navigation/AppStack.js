@@ -1,7 +1,8 @@
 // Routes에서 User인 사람은 여기로 이동
 // 처음에 기본적으로 Home을 보여주고, 아래에 탭으로 이동함.
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {View} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -18,6 +19,8 @@ import StopScreen from '../screens/StopScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import DailyScreen from '../screens/DailyScreen';
 import MonthlyScreen from '../screens/MonthlyScreen';
+
+import TrainerStack from './TrainerStack';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -129,6 +132,7 @@ const ProfileStack = ({navigation}) => ( // post 버튼
 const AppStack = () => {
     const {user} = useContext(AuthContext);
     console.log(user.email) // 여기서 라즈베리 파이에 계정 보내줌. user.email에 계정이 저장되어 있음.
+
     return (
       <Tab.Navigator
         tabBarOptions={{

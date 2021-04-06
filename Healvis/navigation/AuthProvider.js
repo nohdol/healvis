@@ -50,15 +50,22 @@ export const AuthProvider = ({children}) => {
                 //         console.log({error});
                 //     }
                 // },
-                register: async (email, password) => {
+                register: async (email, password, confirmpassword) => {
                     try {
                         if (email == null || password == null){
                             Alert.alert('회원가입 오류', '모두 입력해 주세요.',[
                                 {
-                                  text: "확인",
-                                  style: "cancel",
+                                    text: "확인",
+                                    style: "cancel",
                                 },
-                              ],)
+                            ],)
+                        } else if (password != confirmpassword){
+                            Alert.alert('비밀번호가 다릅니다.', '다시 확인해 주세요.',[
+                                {
+                                    text: "확인",
+                                    style: "cancel",
+                                },
+                            ],)
                         } else {
                             await auth().createUserWithEmailAndPassword(email, password);
                         }

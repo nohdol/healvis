@@ -1,6 +1,5 @@
-// LoginScreen과 유사해서 그대로 가져오고 수정함
 import React, {useContext, useState} from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'; // Image는 로그인 창 위에 로고위함
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
@@ -12,7 +11,7 @@ const SignupScreen = ({navigation}) => {
     const [password, setPassword] = useState();
     const [confirmpassword, setConfirmPassword] = useState();
 
-    const {register} = useContext(AuthContext); // AuthProvider 내부 AuthContext의 register를 가져옴.
+    const {register, login} = useContext(AuthContext);
 
     let istrainer = useState(false);
     if (Trainer != null){
@@ -48,11 +47,9 @@ const SignupScreen = ({navigation}) => {
                 secureTextEntry={true} // 비밀번호 입력이 *로 나옴
             />
 
-            {/* 여기에 설문조사 내용 추가 */}
-
             <FormButton
-                buttonTitle="Sign Up" // 누르면 Firebase Authentication에 User로 등록되게 됨.
-                onPress={() => register(email, password)} // 설문조사 내용도 넘어가게 함
+                buttonTitle="SignUp" // 누르면 Firebase Authentication에 User로 등록되게 됨.
+                onPress={() => (register(email, password, confirmpassword), login(email, password))}
             />
 
             {/* 회원가입 규약 관련 (주석 처리 할 것) */}
@@ -79,7 +76,6 @@ const SignupScreen = ({navigation}) => {
                 backgroundColor="#e6eaf4"
                 onPress={() => {}}
             />
-
             <SocialButton
                 buttonTitle="Sign Up with Google"
                 btnType="google"
